@@ -1,0 +1,1 @@
+- `make dev` recompiles everytime code changes, good for development. Then make requests to `localhost:3000/`
