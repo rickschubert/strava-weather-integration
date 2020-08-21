@@ -1,23 +1,24 @@
 package router
 
 import (
-	"fmt"
-	"net/http"
+	"strava-weather-integration/router/handlers"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 )
 
+func setupMiddleware(router *chi.Mux) {
+	router.Use(middleware.Logger)
+}
+
+func setupRoutes(router *chi.Mux) {
+	router.Get("/runs", handlers.GetRuns)
+	router.NotFound(handlers.RouteNotFound)
+}
+
 func GetRouter() *chi.Mux {
 	router := chi.NewRouter()
-	router.Use(middleware.Logger)
-
-	router.Get("/rick", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Guten Tag")
-	})
-
-	router.Get("/2", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "My second route")
-	})
+	setupMiddleware(router)
+	setupRoutes(router)
 	return router
 }
