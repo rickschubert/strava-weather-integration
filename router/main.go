@@ -13,6 +13,7 @@ func setupMiddleware(router *chi.Mux) {
 
 func setupRoutes(router *chi.Mux) {
 	router.Get("/runs", handlers.GetRuns)
+	router.Get("/auth/redirect", handlers.OAuth2Redirect)
 	router.NotFound(handlers.RouteNotFound)
 }
 

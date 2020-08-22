@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	utils.LoadEnvironmentVariablesFromEnvFile()
 	port := utils.GetPortToUse()
 	r := router.GetRouter()
 	fmt.Println(fmt.Sprintf("Starting server at port %d", port))
